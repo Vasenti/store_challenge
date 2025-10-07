@@ -1,0 +1,63 @@
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - migrations
+    - assets
+    - templates
+  skip-files:
+    - ".*_mock\\.go"
+
+linters-settings:
+  govet:
+    enable:
+      - shadow
+  staticcheck:
+    checks: ["all"]
+  gocyclo:
+    min-complexity: 15
+  dupl:
+    threshold: 100
+  revive:
+    confidence: 0.8
+  gofmt:
+    simplify: true
+  goimports:
+    local-prefixes: github.com/Vasenti/store_challenge
+
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - gosimple
+    - ineffassign
+    - unused
+    - errcheck
+    - typecheck
+    - gofmt
+    - goimports
+    - revive
+    - gocyclo
+    - dupl
+    - misspell
+    - prealloc
+    - unconvert
+    - exportloopref
+    - nakedret
+    - gosec
+  disable:
+    - lll
+
+issues:
+  exclude-use-default: false
+  exclude:
+    - "should have comment"   # no forzamos docstrings en todo
+    - "G306"                  # permitir archivos temporales sin chmod
+    - "SA1019"                # ignorar deprecations controladas
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  new: true
+
+output:
+  format: colored-line-number
+  sort-results: true
